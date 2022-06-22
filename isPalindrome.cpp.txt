@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        
+        if(head->next == nullptr){
+            return true;
+        }
+        
+        ListNode* ptr = head;
+        int count = 0;
+        
+        stack<int> s;
+        
+        while(ptr != nullptr){
+            s.push(ptr->val);
+            head = ptr->next;
+            count++;
+        }
+        
+        if(count % 2 == 1){
+            return false;
+        }
+        
+        for(int i = 0; i < count / 2; i++){
+            if(head->val == s.top()){
+                head = head->next;
+                s.pop();
+            }else{
+                return false;
+            }
+        }
+        
+        return true;
+    }
+};
